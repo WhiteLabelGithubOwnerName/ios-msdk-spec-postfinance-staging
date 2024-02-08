@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name         = "PostFinanceCheckoutSdk"
   s.module_name  = "PostFinanceCheckoutSdk"
   s.version      = "1.2.2"
-  s.summary      = "Official Wallee Payment SDK to access different payment methods."
+  s.summary      = "Official PostFinance Checkout SDK to access different payment methods."
   s.license      = { :type => 'Apache License, Version 2.0', :file => 'LICENSE'}
   s.author       = "wallee AG"
   s.homepage     = "https://github.com/WhiteLabelGithubOwnerName/ios-msdk-postfinance-staging"

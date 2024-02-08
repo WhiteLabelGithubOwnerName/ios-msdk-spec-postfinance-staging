@@ -1,7 +1,7 @@
 # Table of contents
 
 - [Table of contents](#table-of-contents)
-- [PostFinanceCheckoutSdk](#walleepaymentsdk)
+- [PostFinanceCheckoutSdkPaymentSdk](#postfinancecheckoutsdk)
   - [Installation](#installation)
     - [Requirements](#requirements)
     - [Configuration](#configuration)
@@ -9,7 +9,7 @@
       - [From GitHub repository](#from-github-repository)
   - [Documentation](#documentation)
 
-# PostFinanceCheckoutSdk
+# PostFinanceCheckoutSdkPaymentSdk
 
 [ios SDK Release on GitHub](https://github.com/WhiteLabelGithubOwnerName/ios-msdk-postfinance-staging/releases)
 
@@ -30,7 +30,7 @@ target 'DemoApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod ‘PostFinanceCheckoutSdk’, '1.2.2'
+  pod ‘PostFinanceCheckoutSdkPaymentSdk’, '1.2.2'
 
   target 'DemoAppTests' do
     inherit! :search_paths
@@ -41,7 +41,7 @@ end
 
 #### From GitHub repository
 
-`pod 'PostFinanceCheckoutSdk', '1.2.2', :source=> 'https://github.com/WhiteLabelGithubOwnerName/ios-msdk-postfinance-staging.git'`
+`pod 'PostFinanceCheckoutSdkPaymentSdk', '1.2.2', :source=> 'https://github.com/WhiteLabelGithubOwnerName/ios-msdk-postfinance-staging.git'`
 
 and
 
@@ -52,7 +52,7 @@ target 'DemoApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'PostFinanceCheckoutSdk', '1.2.2', :source => 'https://github.com/WhiteLabelGithubOwnerName/ios-msdk-postfinance-staging.git'
+  pod 'PostFinanceCheckoutSdkPaymentSdk', '1.2.2', :source => 'https://github.com/WhiteLabelGithubOwnerName/ios-msdk-postfinance-staging.git'
   pod 'PaymentResources', '1.0.0'
 
   target 'DemoAppTests' do
