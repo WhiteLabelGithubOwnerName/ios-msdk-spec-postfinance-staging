@@ -1,7 +1,7 @@
 # Integration
 
 - [Integration](#integration)
-  - [Set up PostFinanceCheckoutSdk](#set-up-wallee)
+  - [Set up Wallee](#set-up-wallee)
   - [Create transaction](#create-transaction)
   - [Collect payment details](#collect-payment-details)
     - [Basic usage Swift (Storyboard)](#basic-usage-swift-storyboard)
@@ -10,7 +10,7 @@
     - [Additional integration steps](#additional-integration-steps)
   - [Verify payment](#verify-payment)
 
-## Set up PostFinanceCheckoutSdk
+## Set up Wallee
 
 To use the iOS Payment SDK, you need a [wallee account](https://app-wallee.com/user/signup). After signing up, set up your space and enable the payment methods you would like to support.
 
@@ -39,13 +39,13 @@ curl 'https://app-wallee.com/api/transaction/createTransactionCredentials?spaceI
 
 Before launching the iOS Payment SDK to collect the payment, your checkout page should show the total amount, the products that are being purchased and a checkout button to start the payment process.
 
-Let your checkout activity extend `PostFinanceCheckoutSdkPaymentResultObserver`, add the necessary function `paymentResult`.
+Let your checkout activity extend `PostFinanceCheckoutResultObserver`, add the necessary function `paymentResult`.
 
 ```swift
 import UIKit
-import PostFinanceCheckoutSdkPaymentSdk
+import PostFinanceCheckoutSdk
 
-class ViewController : UIViewController, PostFinanceCheckoutSdkPaymentResultObserver {
+class ViewController : UIViewController, PostFinanceCheckoutResultObserver {
 
     func paymentResult(paymentResultMessage: PaymentResult)
     {
@@ -54,21 +54,21 @@ class ViewController : UIViewController, PostFinanceCheckoutSdkPaymentResultObse
 }
 ```
 
-When the customer taps the checkout button, call your endpoint that creates the transaction and returns the access token, initialize the `PostFinanceCheckoutSdkPaymentSdk` instance and launch the payment dialog.
+When the customer taps the checkout button, call your endpoint that creates the transaction and returns the access token, initialize the `PostFinanceCheckoutSdk` instance and launch the payment dialog.
 
 ```swift
 // ...
 import UIKit
-import PostFinanceCheckoutSdkPaymentSdk
+import PostFinanceCheckoutSdk
 
-class ViewController : UIViewController, PostFinanceCheckoutSdkPaymentResultObserver {
+class ViewController : UIViewController, PostFinanceCheckoutResultObserver {
 
     //...
-    var paymentSdk: PostFinanceCheckoutSdkPaymentSdk
+    var paymentSdk: PostFinanceCheckoutSdk
 
     @IBAction func openSdkClick()
     {
-        paymentSdk = PostFinanceCheckoutSdkPaymentSdk(eventObserver: self)
+        paymentSdk = PostFinanceCheckoutSdk(eventObserver: self)
         ...
         paymentSdk.launchPayment(token: _token)
     }
@@ -81,26 +81,26 @@ After the customer completes the payment, the dialog dismisses and the `paymentR
 
 ### Basic usage SwiftUI
 
-First of all make sure you import the `PostFinanceCheckoutSdkPaymentSdk` package and initialize it in relevant class. You also need to extend the class with `PostFinanceCheckoutSdkPaymentResultObserver` to able to receive the result of payment:
+First of all make sure you import the `PostFinanceCheckoutSdk` package and initialize it in relevant class. You also need to extend the class with `PostFinanceCheckoutResultObserver` to able to receive the result of payment:
 
 ```swift
 // PaymentManager.swift
-import PostFinanceCheckoutSdkPaymentSdk
+import PostFinanceCheckoutSdk
 ...
-class PaymentManager: PostFinanceCheckoutSdkPaymentResultObserver {
+class PaymentManager: PostFinanceCheckoutResultObserver {
 ...
 func onOpenSdkPress(){
-    let sdk = PostFinanceCheckoutSdkPaymentSdk(eventObserver: self)
+    let sdk = PostFinanceCheckoutSdk(eventObserver: self)
     ...
     }
 }
 ```
 
-To display the UI of Payment SDK make sure you import the `PostFinanceCheckoutSdkPaymentSdk` into the relevant View:
+To display the UI of Payment SDK make sure you import the `PostFinanceCheckoutSdk` into the relevant View:
 
 ```swift
 // ContentView.swift
-import PostFinanceCheckoutSdkPaymentSdk
+import PostFinanceCheckoutSdk
 ...
     Button {
        // add code for generating transaction and fetching the token
@@ -124,16 +124,16 @@ The response object contains these properties:
 | `COMPLETED` | The payment was successful. |
 | `FAILED` | The payment failed. Check the `message` for more information. |
 | `CANCELED` | The customer canceled the payment. |
-| `PENDING` | The customer has aborted the payment process, so the payment is in a temporarily pending state. It will eventually reach a final status (successful or failed), but it may take a while. Wait for a webhook notification and use the PostFinanceCheckoutSdk API to retrieve the status of the transaction and inform the customer that the payment is pending. |
+| `PENDING` | The customer has aborted the payment process, so the payment is in a temporarily pending state. It will eventually reach a final status (successful or failed), but it may take a while. Wait for a webhook notification and use the Wallee API to retrieve the status of the transaction and inform the customer that the payment is pending. |
 | `TIMEOUT` | Token for this transaction expired. App will be closed and third-party app will get this message. For opening payment sdk third party app have to refetch token |
 
 - `message` providing a localized error message that can be shown to the customer.
 
 ```swift
 import UIKit
-import PostFinanceCheckoutSdkPaymentSdk
+import PostFinanceCheckoutSdk
 
-class ViewController: UIViewController, PostFinanceCheckoutSdkPaymentResultObserver {
+class ViewController: UIViewController, PostFinanceCheckoutResultObserver {
     // ...
 
     @IBOutlet var resultCallbackText: UILabel?
@@ -153,7 +153,7 @@ class ViewController: UIViewController, PostFinanceCheckoutSdkPaymentResultObser
 
 ### Additional integration steps
 
-`PostFinanceCheckoutSdkPaymentSdk.onHandleOpenURL(url: url)` Static function for handling deep link. It has to be called in [SceneDelegate](https://developer.apple.com/documentation/uikit/uiscenedelegate/3238059-scene) or [AppDelegate](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623112-application?language=objc). Without this implementation SDK isn't able to send current response when transaction is complete.
+`PostFinanceCheckoutSdk.onHandleOpenURL(url: url)` Static function for handling deep link. It has to be called in [SceneDelegate](https://developer.apple.com/documentation/uikit/uiscenedelegate/3238059-scene) or [AppDelegate](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623112-application?language=objc). Without this implementation SDK isn't able to send current response when transaction is complete.
 
 ```swift
 
@@ -164,7 +164,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url{
-          PostFinanceCheckoutSdkPaymentSdk.onHandleOpenURL(url: url)
+          PostFinanceCheckoutSdk.onHandleOpenURL(url: url)
         }
     }
 ...

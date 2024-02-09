@@ -2,7 +2,7 @@
 
 | API | Type | Description |
 | --- | --- | --- |
-| PostFinanceCheckoutSdkPaymentResultObserver | protocol | Protocol for handling post-payment events `paymentResult` |
+| PostFinanceCheckoutResultObserver | protocol | Protocol for handling post-payment events `paymentResult` |
 | `func paymentResult(paymentResultMessage: PaymentResult)` | function | Result handler for transaction state |
 | `func launchPayment(token: String)` | function | Opening payment dialog (activity) |
 | `func launchPayment(token: String, isSwiftUI: Bool)` | function | Opening payment dialog (activity) in **SwiftUI** |
