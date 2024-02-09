@@ -43,7 +43,7 @@ To use Apple Pay as a payment method, you must create a Merchant ID and the corr
 The final step is setting up the Merchant ID in SDK configuration. To do so, please call the `configureApplePay(merchantId: "merchant.your.id")` method with the relevant Merchant ID. This method can be called for example after SDK initialization.
 
 ```
-        paymentSdk = PostFinanceCheckoutSdk(eventObserver: self)
+        paymentSdk = PostFinanceCheckoutSdkPaymentSdk(eventObserver: self)
         guard let paymentSdk = paymentSdk else { return }
         paymentSdk.configureApplePay(merchantId: "merchant.your.id")
 ```

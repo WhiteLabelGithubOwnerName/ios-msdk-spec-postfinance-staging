@@ -9,7 +9,7 @@
 
 The appearance of the payment dialog can be customized to match the look and feel of your app. This can be done for both the light and dark theme individually.
 
-Colors can be modified by passing a JSON object to the `PostFinanceCheckoutSdk` instance. You can either completely override the theme or only change certain colors.
+Colors can be modified by passing a JSON object to the `PostFinanceCheckoutSdkPaymentSdk` instance. You can either completely override the theme or only change certain colors.
 
 - `paymentSdk.setLightTheme(NSMutableDictionary)` allows to modify the payment dialog's light theme.
 - `paymentSdk.setDarkTheme(NSMutableDictionary)` allows to modify the payment dialog's dark theme.
@@ -18,12 +18,12 @@ Colors can be modified by passing a JSON object to the `PostFinanceCheckoutSdk` 
 ```swift
 // ...
 import UIKit
-import PostFinanceCheckoutSdk
+import PostFinanceCheckoutSdkPaymentSdk
 
 
-class ViewController : UIViewController, PostFinanceCheckoutResultObserver {
+class ViewController : UIViewController, PostFinanceCheckoutSdkPaymentResultObserver {
 
-    let paymentSdk = PostFinanceCheckoutSdk (eventObserver: self)
+    let paymentSdk = PostFinanceCheckoutSdkPaymentSdk (eventObserver: self)
 
     @IBAction func openSdkClick()
     {
@@ -60,7 +60,7 @@ paymentSdk.setCustomTheme(custom: getNewCustomTheme(), baseTheme: .LIGHT)
 
 ### Animation
 
-Use `setAnimation` method to change the screen change animation. Currently avaliable options are: `AnimationEnum.SLIDE` and `AnimationEnum.BUBBLE`. Default value is `AnimationEnum.SLIDE`. `PostFinanceCheckoutSdk.instance?.setAnimation(AnimationEnum.BUBBLE)` allows to modify the payment dialog's dark theme. ![Slide Animation](../imgs/slideAnimation.gif) ![Bubble Animation](../imgs/bubbleAnimation.gif)
+Use `setAnimation` method to change the screen change animation. Currently avaliable options are: `AnimationEnum.SLIDE` and `AnimationEnum.BUBBLE`. Default value is `AnimationEnum.SLIDE`. `PostFinanceCheckoutSdkPaymentSdk.instance?.setAnimation(AnimationEnum.BUBBLE)` allows to modify the payment dialog's dark theme. ![Slide Animation](../imgs/slideAnimation.gif) ![Bubble Animation](../imgs/bubbleAnimation.gif)
 
 ### Default themes
 
