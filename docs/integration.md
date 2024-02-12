@@ -1,7 +1,7 @@
 # Integration
 
 - [Integration](#integration)
-  - [Set up Wallee](#set-up-postfinancecheckoutsdk)
+  - [Set up PostFinanceCheckoutSdk](#set-up-postfinancecheckoutsdk)
   - [Create transaction](#create-transaction)
   - [Collect payment details](#collect-payment-details)
     - [Basic usage Swift (Storyboard)](#basic-usage-swift-storyboard)
@@ -12,11 +12,11 @@
 
 ## Set up PostFinanceCheckoutSdk
 
-To use the iOS Payment SDK, you need a [wallee account](https://checkout.postfinance.ch/user/signup). After signing up, set up your space and enable the payment methods you would like to support.
+To use the iOS Payment SDK, you need a [PostFinanceCheckoutSdk account](https://checkout.postfinance.ch/user/signup). After signing up, set up your space and enable the payment methods you would like to support.
 
 ## Create transaction
 
-For security reasons, your app cannot create transactions and fetch access tokens. This has to be done on your server by talking to the [wallee Web Service API](https://checkout.postfinance.ch/en-us/doc/api/web-service). You can use one of the official SDK libraries to make these calls.
+For security reasons, your app cannot create transactions and fetch access tokens. This has to be done on your server by talking to the [PostFinanceCheckoutSdk Web Service API](https://checkout.postfinance.ch/en-us/doc/api/web-service). You can use one of the official SDK libraries to make these calls.
 
 To use the iOS Payment SDK to collect payments, an endpoint needs to be added on your server that creates a transaction by calling the [create transaction](https://checkout.postfinance.ch/doc/api/web-service#transaction-service--create) API endpoint. A transaction holds information about the customer and the line items and tracks charge attempts and the payment state.
 
